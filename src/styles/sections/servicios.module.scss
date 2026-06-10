@@ -1,0 +1,71 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.servicios {
+  padding: 4rem 2rem;
+  background: linear-gradient(to bottom, #ff5f375d, #f8f9fa);
+  display: flex;
+  justify-content: center;
+
+  &_layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  &_container_principal {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;       
+    gap: 30px;
+    width: 100%;
+    
+    @include m.tabletXL {
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &_item {
+    background-color: #65656557;
+    padding: 50px 30px 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    
+    flex: 1 1 300px; 
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      transform: translateY(-10px);
+      cursor: pointer;
+    }
+  }
+
+  &_contenido {
+    width: 100%; 
+  }
+  
+  &_heading {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  
+  &_texto {
+    font-size: 0.95rem;
+    color: #000;
+    font-weight: 600;
+    line-height: 1.8;
+  }
+
+  &_icono {
+    color: #ff6037;
+  }
+}

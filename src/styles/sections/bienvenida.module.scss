@@ -1,0 +1,108 @@
+.bienvenida {
+    background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.365), rgba(255, 95, 55, 0.365));
+    background-repeat: none;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 80px 20px;
+
+    &_layout {
+        max-width: 1000px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    &_header {
+        &_box_informacion {
+            max-width: 700px;
+        }
+
+        &_span_tag {
+            display: inline-block;
+            background: #ffece7;
+            color: #ff6037;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        &_p_descripcion {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        // Caja de botones
+        &_box_btn {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+        }
+        &_btn {
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #ff6037;
+            width: auto;
+
+            &:nth-child(1) { // Botón principal
+                background: #ff6037;
+                color: white;
+                &:hover { background: #e6522c; border-color: #e6522c; }
+            }
+
+            &:nth-child(2) { // Botón secundario
+                background: transparent;
+                color: #ff6037;
+                &:hover { background: #ff6037; color: white; }
+            }
+
+            &_span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+        }
+    }
+
+    .logo_sin_fondo_box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+
+        .logo_sin_fondo_icono {
+        font-size: 2.5rem;
+        color: #ff6037;
+        }
+
+        .logo_sin_fondo_h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #1a202c;
+        margin: 0;
+        }
+    }
+
+
+}
+
+// Responsive
+@media (max-width: 600px) {
+  .logo_sin_fondo_h1 { font-size: 2.5rem !important; }
+  .bienvenida_header_box_btn { flex-direction: column; }
+}
