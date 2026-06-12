@@ -26,8 +26,8 @@
 
         &_span_tag {
             display: inline-block;
-            background: #ffece7;
-            color: #ff6037;
+            background-color: #007bff; // Azul medio
+            color: #add8e6;
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -52,6 +52,8 @@
 
         }
         &_btn {
+            background-color: #0056b3; // Azul más oscuro
+            color: #ffffff;
             text-decoration: none;
             padding: 14px 28px;
             border-radius: 4px;
