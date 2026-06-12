@@ -26,8 +26,8 @@
 
         &_span_tag {
             display: inline-block;
-            background-color: #007bff; // Azul medio
-            color: #add8e6;
+            background: #ffece7;
+            color: #a83a1e;
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -52,15 +52,16 @@
 
         }
         &_btn {
-            background-color: #0056b3; // Azul más oscuro
+            background-color: #ff6037;
             color: #ffffff;
             text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 4px;
+            padding: 10px 20px;
+            border-radius: 5px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid #ff6037;
             width: auto;
+            display: inline-block;
 
             &:nth-child(1) { // Botón principal
                 background: #ff6037;
