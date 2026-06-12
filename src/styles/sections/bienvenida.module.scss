@@ -63,19 +63,19 @@
             width: auto;
             display: inline-block;
 
-            &:nth-child(1) { // Botón principal
+            &:nth-child(1) {
                 background: #ff6037;
                 color: white;
                 &:hover { background: #e6522c; border-color: #e6522c; }
             }
 
-            &:nth-child(2) { // Botón secundario
-                background: transparent;
-                color: #a83a1e; // Un naranja mucho más oscuro que cumple con el contraste
-                border-color: #a83a1e; // Mantén el borde del mismo tono
+            &:nth-child(2) { 
+                background: #ffffff;
+                color: #a83a1e; 
+                border-color: #a83a1e; 
                 
                 &:hover { 
-                    background: #ff6037; // Al pasar el mouse, cambia al naranja original
+                    background: #ff6037;
                     color: white; 
                     border-color: #ff6037;
                 }
