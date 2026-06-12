@@ -71,8 +71,14 @@
 
             &:nth-child(2) { // Botón secundario
                 background: transparent;
-                color: #ff6037;
-                &:hover { background: #ff6037; color: white; }
+                color: #a83a1e; // Un naranja mucho más oscuro que cumple con el contraste
+                border-color: #a83a1e; // Mantén el borde del mismo tono
+                
+                &:hover { 
+                    background: #ff6037; // Al pasar el mouse, cambia al naranja original
+                    color: white; 
+                    border-color: #ff6037;
+                }
             }
 
             &_span {
@@ -92,8 +98,8 @@
         margin-bottom: 20px;
 
         .logo_sin_fondo_icono {
-        font-size: 2.5rem;
-        color: #ff6037;
+            font-size: 2.5rem;
+            color: #ff6037;
         }
 
         .logo_sin_fondo_h1 {
