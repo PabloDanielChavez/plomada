@@ -1,57 +1,40 @@
 "use client";
 
-import Image from "next/image";
 import style_servicios from "@/styles/sections/servicios.module.scss";
-import Link from "next/link";
-import { GiPlantWatering, GiSpade, GiTripleCorn } from "react-icons/gi";
-import { BsStars } from "react-icons/bs";
-import { MdBiotech } from "react-icons/md";
-import { FaAward, FaSearchPlus, FaTools } from "react-icons/fa";
-import { FiAlertTriangle } from "react-icons/fi";
+import { MdWaterDrop, MdBuild, MdWaterDamage, MdLocalFireDepartment, MdPool, MdCleaningServices } from 'react-icons/md';
 
 export default function Servicios() {
 
+    const servicios = [
+        { nombre: "Plomería", icono: <MdWaterDrop size={48} className={style_servicios.servicios_icono} /> },
+        { nombre: "Reparaciones", icono: <MdBuild size={48} className={style_servicios.servicios_icono} /> },
+        { nombre: "Impermeabilización", icono: <MdWaterDamage size={48} className={style_servicios.servicios_icono} /> },
+        { nombre: "Calefacción", icono: <MdLocalFireDepartment size={48} className={style_servicios.servicios_icono} /> },
+        { nombre: "Piscinas", icono: <MdPool size={48} className={style_servicios.servicios_icono} /> },
+        { nombre: "Limpieza final", icono: <MdCleaningServices size={48} className={style_servicios.servicios_icono} /> },
+    ];
+
+    // Uso en el componente:
     return (
         <section className={style_servicios.servicios}>
+            <div  className={style_servicios.servicios_presentacion}>
+                <h2 className={style_servicios.servicios_titulo}>SERVICIOS</h2>
+                <p className={style_servicios.servicios_subtitulo}>Gestión integral de mantenimiento</p>
+            </div>
             <div className={style_servicios.servicios_layout}>
                 <div className={style_servicios.servicios_container_principal}>
-                    <div className={style_servicios.servicios_item}>
-                        <div className={style_servicios.servicios_icono_box}>
-                            <FaSearchPlus className={style_servicios.servicios_icono} size={48}/>
+                    {servicios.map((item, index) => (
+                        <div key={index} className={style_servicios.servicios_item}>
+                            <div className={style_servicios.servicios_icono_box}>
+                                {item.icono}
+                            </div>
+                            <div className={style_servicios.servicios_contenido}>
+                                <h3 className={style_servicios.servicios_heading}>
+                                    {item.nombre}
+                                </h3>
+                            </div>
                         </div>
-                        <div className={style_servicios.servicios_contenido}>
-                            <h2 className={style_servicios.servicios_heading}>Diagnóstico Preciso</h2>
-                            <p className={style_servicios.servicios_texto}>Identificamos la raíz del problema mediante herramientas de última generación, evitando gastos innecesarios.</p>
-                        </div>
-                    </div>
-                    <div className={style_servicios.servicios_item}>
-                        <div className={style_servicios.servicios_icono_box}>
-                            <FaTools className={style_servicios.servicios_icono} size={48}/>
-                        </div>
-                        <div className={style_servicios.servicios_contenido}>
-                            <h2 className={style_servicios.servicios_heading}>Instalaciones Integrales</h2>
-                            <p className={style_servicios.servicios_texto}>Desde grifería de alta gama hasta sistemas de distribución de agua completos, bajo normas de seguridad.</p>
-                        </div>
-                    </div>
-                    <div className={style_servicios.servicios_item}>
-                        <div className={style_servicios.servicios_icono_box}>
-                            <FaAward className={style_servicios.servicios_icono} size={48}/>
-                        </div>
-                        <div className={style_servicios.servicios_contenido}>
-                            <h2 className={style_servicios.servicios_heading}>Calidad Garantizada</h2>
-                            <p className={style_servicios.servicios_texto}>Trabajamos con materiales certificados para asegurar durabilidad y eficiencia en cada reparación.</p>
-                        </div>
-                    </div>
-                    <div className={style_servicios.servicios_item}>
-                        <div className={style_servicios.servicios_icono_box}>
-                            <FiAlertTriangle className={style_servicios.servicios_icono} size={48}/>
-                        </div>
-                        <div className={style_servicios.servicios_contenido}>
-                            <h2 className={style_servicios.servicios_heading}>Atención de Emergencias</h2>
-                            <p className={style_servicios.servicios_texto}>Respuesta rápida ante urgencias para minimizar daños y restaurar el confort en tu hogar.</p>
-                        </div>
-                    </div>
-
+                    ))}
                 </div>
             </div>
         </section>

@@ -1,3 +1,6 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
 .bienvenida {
     background-image: linear-gradient(to bottom, rgba(248, 249, 250, 0.365), rgba(255, 95, 55, 0.365));
     background-repeat: none;

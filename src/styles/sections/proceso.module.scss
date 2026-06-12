@@ -1,0 +1,128 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.proceso {
+  padding: 5rem 2rem;
+  
+  background: linear-gradient(to bottom, #f8f9fa, #f8f9fa);
+  text-align: center;
+
+  &_titulo { 
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    letter-spacing: -0.025em;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #ff6037;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+  }
+  
+  &_subtitulo { 
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: 500;
+    margin: -2rem auto 3rem;
+  }
+
+  &_pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    gap: .20rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .paso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 2rem 1rem;
+    border-radius: 20px;
+    transition: transform 0.3s ease;
+
+    &:hover { transform: translateY(-5px); }
+
+    &_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+
+        &:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            top: 30%;
+            right: -20px;
+            font-size: 2rem;
+            color: #ff6037;
+            opacity: 0.7;
+            @media (max-width: 1250px) {
+                display: none;
+            }
+        }
+    }
+
+    &_icono_wrapper {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 1rem;
+        padding: 10px; 
+    }
+
+    &_numero {
+        position: absolute;
+        top: 0;  
+        left: 0; 
+        width: 28px;
+        height: 28px;
+        background-color: #ff6037;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.9rem;
+        border: 3px solid white;
+        z-index: 2;
+    }
+
+    &_icono {
+       
+       
+        display: block; 
+        color: #1a202c;
+        font-size: 3rem;
+        margin-left: 10px;
+    }
+
+    &_titulo { 
+        font-size: 1.1rem; 
+        color: #1a202c;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    &_desc { 
+        font-size: 0.9rem; 
+        color: #444; 
+        line-height: 1.5;
+    }
+  }
+}

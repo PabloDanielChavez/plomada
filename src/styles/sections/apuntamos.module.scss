@@ -1,0 +1,92 @@
+@use '../base/variables.module.scss' as v;
+@use '../base/mixins.module.scss' as m;
+
+.apuntamos {
+  padding: 5rem 2rem;
+  background-color: #ffffff;
+  text-align: center;
+
+  &_titulo { 
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 3rem;
+    
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #ff6037;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  &_layout {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; // Grid asimétrico: targets | divisor | zona
+    gap: 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    align-items: center;
+
+    @media (max-width: 900px) {
+        grid-template-columns: 1fr; // Apilado en móvil
+        gap: 3rem;
+    }
+  }
+
+  // Columna Izquierda: Targets
+  &_grid_targets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  &_target_item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .icono { 
+        font-size: 3.5rem; 
+        color: #ff6037; // Color oscuro para iconos
+    }
+    p { font-weight: 600; color: #4a5568; }
+  }
+
+  // Divisor vertical
+  &_divisor { 
+    width: 3px; 
+    height: 200px; 
+    background: #e2e8f0; 
+    @media (max-width: 900px) { display: none; }
+  }
+
+  // Columna Derecha: Zona de Trabajo
+  &_zona {
+    text-align: center;
+    &_icono { font-size: 5rem; color: #ff6037; margin-bottom: 1rem; }
+    &_titulo { color: #ff6037; font-size: 1.2rem; margin-bottom: 0.5rem; }
+    &_subtitulo { font-size: 3rem; color: #1a202c; margin: 0; }
+    &_parrafo { color: #4a5568; margin-top: 1rem; line-height: 1.5; }
+  }
+}
+.mapa {
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    @include m.telefonoXXL {
+      grid-column: 1 / 4;
+    }
+  } 
+    
+  &_header {
+      text-align: center;
+      margin-bottom: .2rem;
+  }
+  &_titulo { font-size: 1.5rem; color: #1a202c; margin-bottom: 0.5rem; }
+  &_parrafo { color: #718096; font-size: 0.95rem; }
+}

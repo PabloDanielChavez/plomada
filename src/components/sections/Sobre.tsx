@@ -4,9 +4,15 @@ import Image from "next/image";
 import style_sobre from "@/styles/sections/sobre.module.scss";
 import Link from "next/link";
 import { BsClockHistory } from "react-icons/bs";
-import { MdConstruction } from "react-icons/md";
+import { MdBuild, MdConstruction } from "react-icons/md";
 
 export default function Sobre() {
+    const numero = "5491164095914";
+    const mensaje = encodeURIComponent(
+        "*Contacto desde Plomada*\n\n" +
+        "Hola Pablo, estuve viendo tu portafolio y me interesa conversar sobre el desarrollo de un sitio web para mi negocio."
+    );
+    
     return (
         <section className={style_sobre.sobre}>
             <div className={style_sobre.sobre_layout}>
@@ -24,17 +30,20 @@ export default function Sobre() {
                         <p className={style_sobre.sobre_texto}>
                             En cada proyecto, combinamos técnica hidráulica avanzada con una ejecución impecable, asegurando que cada conexión sea segura y eficiente.
                         </p>
-                        
-                        <div className={style_sobre.sobre_box_btn}>
-                            <button className={style_sobre.sobre_btn}>Contactar</button>
-                        </div>
+                        <Link 
+                            className={style_sobre.sobre_box_btn}
+                            href={`https://wa.me/${numero}?text=${mensaje}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`SOLICITAR SERVICIO`}
+                        >
+                            <span className={style_sobre.sobre_btn}>
+                                <MdBuild /> SOLICITAR SERVICIOS
+                            </span>
+                        </Link>
                     </div>
                     <div className={style_sobre.sobre_box_img}>
                         <div className={style_sobre.sobre_card_img}>
-                            <div className={style_sobre.sobre_titulo_img}>
-                                <BsClockHistory />
-                                <span>Nuestra Misión</span>
-                            </div>
                             <div className={style_sobre.sobre_imagen_box}>
                                 <Image 
                                     className={style_sobre.sobre_imagen}

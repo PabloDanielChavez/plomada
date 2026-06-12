@@ -2,17 +2,46 @@
 @use '../base/mixins.module.scss' as m;
 
 .servicios {
-  padding: 4rem 2rem;
+  padding:1rem 2rem 5rem 2rem;
   background: linear-gradient(to bottom, #ff5f375d, #f8f9fa);
-  display: flex;
-  justify-content: center;
 
   &_layout {
     display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-    max-width: 1200px;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 0 auto;
+  }
+
+  &_presentacion {
+    text-align: center;
+    margin-bottom: 4rem; // Espacio entre el título y la grilla de servicios
+    padding: 0 1rem;
+  }
+
+  &_titulo {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    letter-spacing: -0.025em;
+    margin: 0 0 1rem 0;
+    text-transform: uppercase;
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: #ff6037;
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+  }
+
+  &_subtitulo {
+    font-size: 1.4rem;
+    color: #464646; // Un gris suave
+    font-weight: 400;
+    max-width: 600px; // Evita que el texto sea demasiado largo en pantallas grandes
+    margin: 0 auto;
   }
 
   &_container_principal {
@@ -30,19 +59,20 @@
   }
 
   &_item {
-    background-color: #65656557;
-    padding: 50px 30px 40px 30px;
-    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
     text-align: center;
-    transition: transform 0.3s ease;
-    
-    flex: 1 1 300px; 
-    display: flex;
-    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(0,0,0,0.01);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    min-width: max-content;
 
     &:hover {
-      transform: translateY(-10px);
-      cursor: pointer;
+      transform: translateY(-12px);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+      border-color: #ff6037;
     }
   }
 
@@ -51,11 +81,10 @@
   }
   
   &_heading {
-    color: #fff;
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    color: #2d3748;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
   }
   
   &_texto {
@@ -64,8 +93,19 @@
     font-weight: 600;
     line-height: 1.8;
   }
+  
+  &_icono {
+    color: #ff6037;
+    // Opcional: añadir un fondo suave detrás del icono
+    background: rgba(255, 96, 55, 0.1);
+    padding: 12px;
+    border-radius: 50%;
+  }
 
   &_icono {
     color: #ff6037;
+    // Opcional: añadir un fondo suave detrás del icono
+    background: rgba(255, 96, 55, 0.1);
+    padding: 12px;
   }
 }
