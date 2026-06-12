@@ -49,8 +49,8 @@ export default function Sobre() {
                                     className={style_sobre.sobre_imagen}
                                     src={"/img/fondo/nosotros.jpg"}
                                     alt={"Nosotros"}
-                                    width={200}
-                                    height={200}
+                                    width={256}
+                                    height={454}
                                     sizes="200px"
                                 />
                             </div>
