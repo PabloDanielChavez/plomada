@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   // verification: {
   //   google: '4yIUAbvNIcrI3UhHJW9vszJTkYpBcBoyjlRtCzn7mUc',
   // },
-  // icons: {
-  //   icon: "/img/Logotipo_Portafolio_PDC/Icono/Icono_48x48px.png"
-  // }
+  icons: {
+    icon: "/img/herramienta-de-construccion.png"
+  }
 };
 
 export const viewport = {
