@@ -1,111 +1,55 @@
-@use '../base/variables.module.scss' as v;
-@use '../base/mixins.module.scss' as m;
-
-.servicios {
-  padding:1rem 2rem 5rem 2rem;
-  background: linear-gradient(to bottom, #ff5f375d, #f8f9fa);
-
-  &_layout {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    margin: 0 auto;
-  }
-
-  &_presentacion {
-    text-align: center;
-    margin-bottom: 4rem; // Espacio entre el título y la grilla de servicios
-    padding: 0 1rem;
-  }
-
-  &_titulo {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a202c;
-    letter-spacing: -0.025em;
-    margin: 0 0 1rem 0;
-    text-transform: uppercase;
-    &::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: #ff6037;
-      margin: 1rem auto 0;
-      border-radius: 2px;
-    }
-  }
-
-  &_subtitulo {
-    font-size: 1.4rem;
-    color: #464646; // Un gris suave
-    font-weight: 400;
-    max-width: 600px; // Evita que el texto sea demasiado largo en pantallas grandes
-    margin: 0 auto;
-  }
-
-  &_container_principal {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    flex-wrap: wrap;       
-    gap: 30px;
-    width: 100%;
-    
-    @include m.tabletXL {
-      flex-direction: row;
-      flex-wrap: nowrap;
-    }
-  }
-
-  &_item {
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    padding: 2.5rem 1.5rem;
-    border-radius: 16px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid rgba(0,0,0,0.01);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    min-width: max-content;
-
-    &:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 30px rgba(0,0,0,0.1);
-      border-color: #ff6037;
-    }
-  }
-
-  &_contenido {
-    width: 100%; 
-  }
-  
-  &_heading {
-    color: #2d3748;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0;
-  }
-  
-  &_texto {
-    font-size: 0.95rem;
-    color: #000;
-    font-weight: 600;
-    line-height: 1.8;
-  }
-  
-  &_icono {
-    color: #ff6037;
-    // Opcional: añadir un fondo suave detrás del icono
-    background: rgba(255, 96, 55, 0.1);
-    padding: 12px;
-    border-radius: 50%;
-  }
-
-  &_icono {
-    color: #ff6037;
-    // Opcional: añadir un fondo suave detrás del icono
-    background: rgba(255, 96, 55, 0.1);
-    padding: 12px;
-  }
+.section {
+  padding: 5.5rem 0;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+    var(--ink);
+  background-size: 52px 52px;
+  color: white;
+}
+.container { width: min(calc(100% - 2rem), var(--container)); margin: 0 auto; }
+.header {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+  h2 { max-width: 650px; margin: 0; font-size: clamp(2.2rem, 7vw, 3.7rem); }
+  p { max-width: 540px; margin: 0; color: #aeb9bd; font-size: .95rem; line-height: 1.75; }
+}
+.grid { display: grid; gap: .8rem; }
+.card {
+  position: relative;
+  min-height: 285px;
+  padding: 1.5rem;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+  transition: transform 240ms ease, background 240ms ease, border-color 240ms ease;
+  &:hover { transform: translateY(-5px); border-color: rgba(242,101,61,.65); background: rgba(255,255,255,.06); }
+  h3 { margin: 3.5rem 0 .9rem; font-size: 1.25rem; }
+  p { margin: 0; color: #aeb9bd; font-size: .86rem; line-height: 1.7; }
+}
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  svg { color: #ff8b69; font-size: 2rem; }
+  span { color: #738086; font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+}
+.cardLine {
+  position: absolute;
+  inset: auto 1.5rem 0;
+  height: 3px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms ease;
+  .card:hover & { transform: scaleX(1); }
+}
+@media (min-width: 650px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 950px) {
+  .section { padding: 8rem 0; }
+  .header { grid-template-columns: 1.2fr .8fr; align-items: end; margin-bottom: 3.5rem; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+  .card { min-height: 310px; padding: 1.8rem; }
 }

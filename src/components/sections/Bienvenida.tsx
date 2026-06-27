@@ -1,49 +1,32 @@
-"use client";
+import { FiClock, FiFileText, FiShield, FiTool } from "react-icons/fi";
+import styles from "@/styles/sections/bienvenida.module.scss";
 
-import Image from "next/image";
-import style_bienvenida from "@/styles/sections/bienvenida.module.scss";
-import Link from "next/link";
-import { BsGraphUpArrow } from "react-icons/bs";
-import { MdBuild, MdConstruction } from "react-icons/md";
+const benefits = [
+  { icon: FiClock, title: "Respuesta rápida", text: "Priorizamos urgencias y coordinamos según tu zona." },
+  { icon: FiFileText, title: "Presupuesto claro", text: "Te explicamos el alcance antes de comenzar." },
+  { icon: FiTool, title: "Trabajo prolijo", text: "Cuidamos el espacio y resolvemos con criterio técnico." },
+  { icon: FiShield, title: "Garantía real", text: "Revisamos el resultado y respondemos por el trabajo." },
+];
 
 export default function Bienvenida() {
-    const numero = "5491164095914";
-    const mensaje = encodeURIComponent(
-        "*Contacto desde Plomada*\n\n" +
-        "Hola Pablo, estuve viendo tu portafolio y me interesa conversar sobre el desarrollo de un sitio web para mi negocio."
-    );
-
-    return (
-        <section className={style_bienvenida.bienvenida}>
-            <div className={style_bienvenida.bienvenida_layout}>
-                <div className={style_bienvenida.bienvenida_header_box_informacion}>
-                    <div className={style_bienvenida.logo_sin_fondo_box}>
-                        <MdConstruction className={style_bienvenida.logo_sin_fondo_icono} />
-                        <h1 className={style_bienvenida.logo_sin_fondo_h1}>
-                            Plomada 
-                        </h1>
-                    </div>
-                    <span className={style_bienvenida.bienvenida_header_span_tag} >
-                        Soluciones profesionales.
-                    </span>
-                    <p className={style_bienvenida.bienvenida_header_p_descripcion} >
-                        Expertos en instalaciones, reparaciones y mantenimiento preventivo. Garantizamos el funcionamiento óptimo de tu hogar o industria con rapidez y profesionalismo.
-                    </p>
-                    <div className={style_bienvenida.bienvenida_header_box_btn}>
-                        <Link 
-                            className={style_bienvenida.bienvenida_header_btn}
-                            href={`https://wa.me/${numero}?text=${mensaje}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`SOLICITAR SERVICIO`}
-                        >
-                            <span className={style_bienvenida.bienvenida_header_btn_span}>
-                                <MdBuild className={style_bienvenida.icono_clase} />SOLICITAR SERVICIOS
-                            </span>
-                        </Link>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+  return (
+    <section className={styles.section} aria-labelledby="beneficios-title">
+      <div className={styles.container}>
+        <div className={styles.intro}>
+          <span className="sectionLabel">Por qué elegir Plomada</span>
+          <h2 id="beneficios-title">Un servicio pensado para darte tranquilidad</h2>
+        </div>
+        <div className={styles.grid}>
+          {benefits.map(({ icon: Icon, title, text }, index) => (
+            <article className={styles.card} key={title}>
+              <span className={styles.number}>0{index + 1}</span>
+              <Icon className={styles.icon} aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

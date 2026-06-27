@@ -1,75 +1,83 @@
-  "use client";
-  import { useState, useEffect } from 'react';
-  import styles_header from '@/styles/sections/header.module.scss';
-  import { BiBriefcase, BiCog, BiEnvelope, BiHomeAlt2, BiMenu } from 'react-icons/bi';
-  import { MdConstruction, MdInfoOutline, MdLocationOn, MdTimeline } from 'react-icons/md';
+"use client";
 
-  export default function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { FiMenu, FiX, FiPhoneCall } from "react-icons/fi";
+import styles from "@/styles/sections/header.module.scss";
+import { WHATSAPP_URL } from "@/data/site";
 
-      useEffect(() => {
-        const handleScroll = () => {
-          setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-        }, 
-      []);
+const navigation = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Servicios", href: "#servicios" },
+  { label: "Cómo trabajamos", href: "#proceso" },
+  { label: "Nosotros", href: "#nosotros" },
+  { label: "Cobertura", href: "#cobertura" },
+];
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+export default function Header() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    const menu = [
-        { id: 1, titulo: "Inicio", target: "inicio", icono: <BiHomeAlt2 size={32} />},
-        { id: 2, titulo: "Servicio", target: "servicio", icono: <BiBriefcase size={32} />},
-        { id: 3, titulo: "Proceso", target: "proceso", icono: <BiCog size={32} />},
-        { id: 4, titulo: "Sobre", target: "sobre", icono: <MdInfoOutline size={32} />},
-        { id: 5, titulo: "Apuntamos", target: "apuntamos", icono: <MdLocationOn size={32} />},
-    ];
-    const scrollToSection = (targetId: string) => {
-      const element = document.getElementById(targetId);
-      if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setIsMenuOpen(false); // Cierra el menú en móvil
-      }
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
 
-    return (
-      <header className={`${styles_header.header} ${isScrolled ? styles_header.header_scrolled : ''}`}>
-        <div className={styles_header.header_container}>
-          <div className={styles_header.header_logo} aria-label="Plomada">
-            <span className={styles_header.header_icon} aria-hidden="true">
-              <MdConstruction size={28} style={{color: "#ff6037"}} />
-            </span>
-            <span>Plomada</span>
-          </div>
-          
-          <div className={styles_header.header_actions}>
-            <button 
-              className={styles_header.header_menuBtn} 
-              aria-label="Abrir menú de navegación"
-              aria-expanded={isMenuOpen}
-              onClick={toggleMenu}
-            >
-              <BiMenu size={32} />
-            </button>
-          </div>
-        </div>
-        <nav className={`${styles_header.header_nav}`} aria-label="Navegación principal">
-          <ul className={`${styles_header.header_ul} ${isMenuOpen ? styles_header.header_activo : styles_header.header_desactivado}`}>
-            {menu.map((menu) => (
-              <li 
-                key={menu.id} 
-                className={styles_header.header_li} 
-                aria-label={`Navegacion ${menu.titulo}`}
-                onClick={() => scrollToSection(menu.target)}  
-              >
-                {menu.icono}
-                <span className={styles_header.header_spanNav}>{menu.titulo}</span>
+  return (
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+      <div className={styles.container}>
+        <Link href="#inicio" className={styles.brand} aria-label="Plomada, ir al inicio">
+          <span className={styles.brandMark} aria-hidden="true">P</span>
+          <span>
+            <strong>Plomada</strong>
+            <small>Soluciones técnicas</small>
+          </span>
+        </Link>
+
+        <button
+          className={styles.menuButton}
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          aria-controls="main-navigation"
+          onClick={() => setOpen((current) => !current)}
+        >
+          {open ? <FiX /> : <FiMenu />}
+        </button>
+
+        <nav
+          id="main-navigation"
+          className={`${styles.nav} ${open ? styles.navOpen : ""}`}
+          aria-label="Navegación principal"
+        >
+          <ul>
+            {navigation.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
               </li>
             ))}
           </ul>
+          <Link
+            href={WHATSAPP_URL}
+            className={styles.contact}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactar a Plomada por WhatsApp"
+          >
+            <FiPhoneCall aria-hidden="true" />
+            Contacto
+          </Link>
         </nav>
-      </header>
-    );
-  }
+      </div>
+    </header>
+  );
+}

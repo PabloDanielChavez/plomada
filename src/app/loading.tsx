@@ -1,14 +1,8 @@
-"use client";
-import React from 'react';
-import styles from '@/styles/sections/loading.module.scss';
-
 export default function Loading() {
   return (
-    <div >
-      <div >
-        <div ></div>
-        <p >Cargando Portafolio...</p>
-      </div>
+    <div className="pageLoading" role="status" aria-live="polite">
+      <span className="pageLoading__mark" aria-hidden="true">P</span>
+      <span>Cargando Plomada…</span>
     </div>
   );
 }

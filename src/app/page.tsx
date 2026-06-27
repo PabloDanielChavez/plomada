@@ -1,24 +1,28 @@
-import dynamic from 'next/dynamic';
+import Header from "@/components/sections/Header";
+import Hero from "@/components/sections/Hero";
+import Bienvenida from "@/components/sections/Bienvenida";
+import Servicios from "@/components/sections/Servicios";
+import Proceso from "@/components/sections/Proceso";
+import Sobre from "@/components/sections/Sobre";
+import Apuntamos from "@/components/sections/Apuntamos";
+import FinalCTA from "@/components/sections/FinalCTA";
+import Footer from "@/components/sections/Footer";
+import Reveal from "@/components/sub_components/Reveal";
 
-const Header = dynamic(() => import('@/components/sections/Header'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Bienvenida = dynamic(() => import('@/components/sections/Bienvenida'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Servicios = dynamic(() => import('@/components/sections/Servicios'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Proceso = dynamic(() => import('@/components/sections/Proceso'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Sobre = dynamic(() => import('@/components/sections/Sobre'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Apuntamos = dynamic(() => import('@/components/sections/Apuntamos'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-const Footer = dynamic(() => import('@/components/sections/Footer'), { loading: () => <p>Cargando sección...</p>, ssr: true, });
-
-export default async function Home() {
-
-    return (
-        <>
-            <Header />
-            <div id="inicio"><Bienvenida /></div>
-            <div id="servicio"><Servicios /></div>
-            <div id="proceso"><Proceso /></div>
-            <div id="sobre"><Sobre /></div>
-            <div id="apuntamos"><Apuntamos /></div>
-            <Footer />
-        </>
-    );
+export default function Home() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Reveal><Bienvenida /></Reveal>
+        <Reveal><Servicios /></Reveal>
+        <Reveal><Proceso /></Reveal>
+        <Reveal><Sobre /></Reveal>
+        <Reveal><Apuntamos /></Reveal>
+        <Reveal><FinalCTA /></Reveal>
+      </main>
+      <Footer />
+    </>
+  );
 }

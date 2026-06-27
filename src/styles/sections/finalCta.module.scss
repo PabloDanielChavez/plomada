@@ -1,0 +1,23 @@
+.section { padding: 1rem; background: white; }
+.container {
+  position: relative;
+  width: min(100%, 1380px);
+  margin: 0 auto;
+  padding: 4.5rem 1.2rem;
+  overflow: hidden;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,.2), transparent 17%),
+    linear-gradient(135deg, #f56d44, #e6542d);
+  color: white;
+  text-align: center;
+  &::before { content: "P"; position: absolute; left: -1rem; bottom: -7.5rem; color: rgba(255,255,255,.08); font-size: 23rem; font-weight: 900; line-height: 1; }
+}
+.kicker { position: relative; color: #ffe1d7; font-size: .69rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.container h2 { position: relative; margin: 1rem 0; font-size: clamp(2.7rem, 9vw, 5.4rem); }
+.container p { position: relative; max-width: 580px; margin: 0 auto 1.7rem; color: #fff0eb; font-size: .95rem; }
+.button { position: relative; display: inline-flex; align-items: center; gap: .65rem; min-height: 56px; padding: 0 1.25rem; border-radius: 11px; background: var(--ink); color: white; text-decoration: none; font-size: .82rem; font-weight: 800; transition: 200ms ease; }
+.button svg:last-child { margin-left: .3rem; }
+.button:hover { transform: translateY(-3px); background: #0b1317; }
+.container small { position: relative; display: block; max-width: 660px; margin: 1.4rem auto 0; color: #ffd6ca; font-size: .67rem; line-height: 1.55; }
+@media (min-width: 800px) { .section { padding: 2rem; } .container { padding: 7rem 2rem; } }

@@ -1,128 +1,66 @@
-@use '../base/variables.module.scss' as v;
-@use '../base/mixins.module.scss' as m;
-
-.proceso {
-  padding: 5rem 2rem;
-  
-  background: linear-gradient(to bottom, #f8f9fa, #f8f9fa);
-  text-align: center;
-
-  &_titulo { 
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1a202c;
-    letter-spacing: -0.025em;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    
-    &::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 4px;
-      background: #ff6037;
-      margin: 1rem auto 0;
-      border-radius: 2px;
-    }
-  }
-  
-  &_subtitulo { 
-    font-size: 1.2rem;
-    color: #333;
-    font-weight: 500;
-    margin: -2rem auto 3rem;
-  }
-
-  &_pasos {
+.section { padding: 5.5rem 0; background: var(--sand); }
+.container { width: min(calc(100% - 2rem), var(--container)); margin: 0 auto; }
+.header {
+  max-width: 710px;
+  margin-bottom: 3rem;
+  h2 { margin-bottom: 1.2rem; font-size: clamp(2.2rem, 7vw, 3.8rem); }
+  p { max-width: 570px; margin: 0; color: var(--ink-soft); font-size: .95rem; }
+}
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: steps;
+  li {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    background: #ffffff;
-    padding: 2.5rem 1.5rem;
-    border-radius: 16px;
-    gap: .20rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: start;
+    grid-template-columns: 56px 1fr;
+    gap: 1.1rem;
+    padding: 0 0 2rem;
+    &:not(:last-child)::before {
+      content: "";
+      position: absolute;
+      left: 27px;
+      top: 58px;
+      bottom: 0;
+      width: 1px;
+      background: #cad0d1;
+    }
   }
-
-  .paso {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.4);
-    padding: 2rem 1rem;
-    border-radius: 20px;
-    transition: transform 0.3s ease;
-
-    &:hover { transform: translateY(-5px); }
-
-    &_item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        position: relative;
-
-        &:not(:last-child)::after {
-            content: "→";
-            position: absolute;
-            top: 30%;
-            right: -20px;
-            font-size: 2rem;
-            color: #ff6037;
-            opacity: 0.7;
-            @media (max-width: 1250px) {
-                display: none;
-            }
-        }
-    }
-
-    &_icono_wrapper {
-        position: relative;
-        display: inline-block;
-        margin-bottom: 1rem;
-        padding: 10px; 
-    }
-
-    &_numero {
-        position: absolute;
-        top: 0;  
-        left: 0; 
-        width: 28px;
-        height: 28px;
-        background-color: #ff6037;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        font-size: 0.9rem;
-        border: 3px solid white;
-        z-index: 2;
-    }
-
-    &_icono {
-       
-       
-        display: block; 
-        color: #1a202c;
-        font-size: 3rem;
-        margin-left: 10px;
-    }
-
-    &_titulo { 
-        font-size: 1.1rem; 
-        color: #1a202c;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-
-    &_desc { 
-        font-size: 0.9rem; 
-        color: #444; 
-        line-height: 1.5;
-    }
+  h3 { margin: .25rem 0 .55rem; font-size: 1.12rem; }
+  p { max-width: 520px; margin: 0; color: var(--ink-soft); font-size: .86rem; line-height: 1.65; }
+}
+.iconWrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid #d7dcdd;
+  border-radius: 50%;
+  background: white;
+  color: var(--orange-dark);
+  svg { font-size: 1.25rem; }
+  span {
+    position: absolute;
+    top: -4px; right: -4px;
+    display: grid; place-items: center;
+    width: 22px; aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    font-size: .52rem;
+    font-weight: 800;
+  }
+}
+@media (min-width: 900px) {
+  .section { padding: 8rem 0; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    li { display: block; padding: 0; }
+    li:not(:last-child)::before { left: 64px; right: -1rem; top: 28px; bottom: auto; width: auto; height: 1px; }
+    h3 { margin-top: 1.5rem; }
   }
 }

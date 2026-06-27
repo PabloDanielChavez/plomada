@@ -1,84 +1,106 @@
-@use 'base/variables.module.scss' as v;
-@use 'base/mixins.module.scss' as m;
-@import "@fortawesome/fontawesome-free/css/all.min.css";
+@use "base/normalice";
 
-*, *::before, *::after {
-    box-sizing: border-box;
+:root {
+  --ink: #172329;
+  --ink-deep: #101a1f;
+  --ink-soft: #435159;
+  --orange: #f2653d;
+  --orange-dark: #d94d27;
+  --orange-pale: #fff1eb;
+  --sand: #f5f3ef;
+  --line: #dfe3e3;
+  --white: #ffffff;
+  --container: 1180px;
+  --shadow: 0 22px 60px rgba(23, 35, 41, 0.12);
 }
 
-h1 {
-    font-size: 2.9rem;
-        @include m.tabletXL {
-            font-size: 3.9rem;
-        }
-        @include m.desktop {
-            font-size: 4.5rem;
-        }
-        @include m.desktopXXL {
-            font-size: 5.1rem;
-        }
-
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
 }
 
-h3 {
-    font-family: v.$fuenteTituloProfesion;
-    font-size: 2rem;
-        @include m.tabletXL {
-            font-size: 2.2rem;
-        }
-        @include m.desktop {
-            font-size: 2.4rem;
-        }
-        @include m.desktopXXL {
-            font-size: 2.6rem;
-        }
-
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
 }
 
-p {
-    // font-family: v.$fuenteParrafo;
-    font-size: 1.6rem;
-        @include m.tabletXL {
-            font-size: 1.7rem;
-        }
-        @include m.desktop {
-            font-size: 1.8rem;
-        }
-        @include m.desktopXXL {
-            font-size: 1.9rem;
-        }
+*, *::before, *::after { box-sizing: border-box; }
+
+main { overflow: clip; }
+
+h1, h2, h3, p { margin-top: 0; }
+
+h1, h2, h3 {
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 }
 
-.animacion_btn {
-    transition: color 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), filter 0.25s ease;
-    svg {
-        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
+a { color: inherit; }
 
-    &:hover {
-        color: #ffffff;
-        transform: translateY(-2px);
-        filter: drop-shadow(0 0 6px rgba(192, 132, 252, 0.5));
+button, a { -webkit-tap-highlight-color: transparent; }
 
-        &::before {
-            opacity: 1;
-            transform: scale(1);
-        }
-        svg {
-            transform: scale(1.08);
-        }
-    }
-    &:active {
-        transform: translateY(1px) scale(0.94); 
-        filter: drop-shadow(0 0 2px rgba(192, 132, 252, 0.3));
-        transition: transform 0.05s linear;
+:focus-visible {
+  outline: 3px solid rgba(242, 101, 61, 0.48);
+  outline-offset: 4px;
+}
 
-        &::before {
-            background: rgba(192, 132, 252, 0.2);
-        }
-        
-        svg {
-            transform: scale(0.95);
-        }
-    }
+::selection {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.sectionLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+  color: var(--orange-dark);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    width: 25px;
+    height: 2px;
+    background: currentColor;
+  }
+}
+
+.sectionLabelLight { color: #ff9d80; }
+
+.pageLoading {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1rem;
+  background: var(--ink);
+  color: white;
+  font-weight: 700;
+}
+
+.pageLoading__mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  background: var(--orange);
+  font-size: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
