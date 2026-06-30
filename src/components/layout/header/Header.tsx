@@ -3,16 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiMenu, FiX, FiPhoneCall } from "react-icons/fi";
-import styles from "@/styles/sections/header.module.scss";
-import { WHATSAPP_URL } from "@/data/site";
+import styles from "./header.module.scss";
+import { landingData } from "@/data/site";
+import { createWhatsappUrl } from "@/lib/whatsapp";
 
-const navigation = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Cómo trabajamos", href: "#proceso" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Cobertura", href: "#cobertura" },
-];
+const whatsappUrl = createWhatsappUrl(landingData.contact.whatsapp);
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -35,18 +30,26 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.container}>
-        <Link href="#inicio" className={styles.brand} aria-label="Plomada, ir al inicio">
-          <span className={styles.brandMark} aria-hidden="true">P</span>
+        <Link
+          href={`#${landingData.hero.id}`}
+          className={styles.brand}
+          aria-label={landingData.brand.homeAriaLabel}
+        >
+          <span className={styles.brandMark} aria-hidden="true">{landingData.brand.monogram}</span>
           <span>
-            <strong>Plomada</strong>
-            <small>Soluciones técnicas</small>
+            <strong>{landingData.brand.name}</strong>
+            <small>{landingData.brand.tagline}</small>
           </span>
         </Link>
 
         <button
           className={styles.menuButton}
           type="button"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-label={
+            open
+              ? landingData.navigation.menuCloseLabel
+              : landingData.navigation.menuOpenLabel
+          }
           aria-expanded={open}
           aria-controls="main-navigation"
           onClick={() => setOpen((current) => !current)}
@@ -57,24 +60,24 @@ export default function Header() {
         <nav
           id="main-navigation"
           className={`${styles.nav} ${open ? styles.navOpen : ""}`}
-          aria-label="Navegación principal"
+          aria-label={landingData.navigation.mainLabel}
         >
           <ul>
-            {navigation.map((item) => (
+            {landingData.navigation.main.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} onClick={() => setOpen(false)}>{item.label}</Link>
               </li>
             ))}
           </ul>
           <Link
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             className={styles.contact}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Contactar a Plomada por WhatsApp"
+            aria-label={landingData.contact.whatsapp.ariaLabel}
           >
             <FiPhoneCall aria-hidden="true" />
-            Contacto
+            {landingData.contact.whatsapp.headerLabel}
           </Link>
         </nav>
       </div>

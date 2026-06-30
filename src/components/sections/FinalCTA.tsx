@@ -1,26 +1,27 @@
 import Link from "next/link";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
-import styles from "@/styles/sections/finalCta.module.scss";
-import { WHATSAPP_URL } from "@/data/site";
+import styles from "./finalCta.module.scss";
+import { landingData } from "@/data/site";
+import { createWhatsappUrl } from "@/lib/whatsapp";
+
+const whatsappUrl = createWhatsappUrl(landingData.contact.whatsapp);
 
 export default function FinalCTA() {
+  const { finalCta } = landingData;
+
   return (
-    <section className={styles.section} id="contacto" aria-labelledby="contacto-title">
-      <div className={styles.container}>
-        <span className={styles.kicker}>¿Tenés un problema para resolver?</span>
-        <h2 id="contacto-title">Hablemos de la solución.</h2>
-        <p>
-          Contanos qué necesitás y coordinamos un servicio claro, rápido y profesional.
-        </p>
-        <Link href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.button}>
+    <section className={styles.section} id={finalCta.id} aria-labelledby={finalCta.headingId}>
+      <div className={styles.container} data-monogram={landingData.brand.monogram}>
+        <span className={styles.kicker}>{finalCta.eyebrow}</span>
+        <h2 id={finalCta.headingId}>{finalCta.title}</h2>
+        <p>{finalCta.description}</p>
+        <Link href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={styles.button}>
           <FaWhatsapp aria-hidden="true" />
-          Pedir presupuesto ahora
+          {finalCta.cta.label}
           <FiArrowUpRight aria-hidden="true" />
         </Link>
-        <small>
-          Consultas por plomería, destapaciones, pérdidas, filtraciones, instalaciones y mantenimiento.
-        </small>
+        <small>{finalCta.microcopy}</small>
       </div>
     </section>
   );

@@ -11,7 +11,7 @@
     linear-gradient(135deg, #f56d44, #e6542d);
   color: white;
   text-align: center;
-  &::before { content: "P"; position: absolute; left: -1rem; bottom: -7.5rem; color: rgba(255,255,255,.08); font-size: 23rem; font-weight: 900; line-height: 1; }
+  &::before { content: attr(data-monogram); position: absolute; left: -1rem; bottom: -7.5rem; color: rgba(255,255,255,.08); font-size: 23rem; font-weight: 900; line-height: 1; }
 }
 .kicker { position: relative; color: #ffe1d7; font-size: .69rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
 .container h2 { position: relative; margin: 1rem 0; font-size: clamp(2.7rem, 9vw, 5.4rem); }

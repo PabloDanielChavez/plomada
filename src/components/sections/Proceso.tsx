@@ -1,36 +1,45 @@
 import { FiMessageSquare, FiSearch, FiCalendar, FiTool, FiCheckCircle } from "react-icons/fi";
-import styles from "@/styles/sections/proceso.module.scss";
+import type { IconType } from "react-icons";
+import styles from "./proceso.module.scss";
+import { landingData } from "@/data/site";
+import type { ProcessIconKey } from "@/types/landing.types";
 
-const steps = [
-  { icon: FiMessageSquare, title: "Consulta inicial", text: "Nos contás el problema, la ubicación y el tipo de servicio que necesitás." },
-  { icon: FiSearch, title: "Diagnóstico", text: "Evaluamos el caso con fotos, una descripción o una visita técnica." },
-  { icon: FiCalendar, title: "Coordinación", text: "Definimos día y horario según la urgencia y complejidad del trabajo." },
-  { icon: FiTool, title: "Ejecución", text: "Trabajamos con herramientas adecuadas y cuidando cada detalle." },
-  { icon: FiCheckCircle, title: "Revisión y garantía", text: "Verificamos el resultado y dejamos recomendaciones claras." },
-];
+const icons: Record<ProcessIconKey, IconType> = {
+  message: FiMessageSquare,
+  search: FiSearch,
+  calendar: FiCalendar,
+  tool: FiTool,
+  checkCircle: FiCheckCircle,
+};
 
 export default function Proceso() {
+  const { process } = landingData;
+
   return (
-    <section className={styles.section} id="proceso" aria-labelledby="proceso-title">
+    <section className={styles.section} id={process.id} aria-labelledby={process.headingId}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <span className="sectionLabel">Cómo trabajamos</span>
-          <h2 id="proceso-title">Simple de coordinar.<br />Profesional de principio a fin.</h2>
-          <p>Un proceso ordenado para que siempre sepas qué sigue y qué estás contratando.</p>
+          <span className="sectionLabel">{process.eyebrow}</span>
+          <h2 id={process.headingId}>{process.titleLines[0]}<br />{process.titleLines[1]}</h2>
+          <p>{process.description}</p>
         </header>
         <ol className={styles.steps}>
-          {steps.map(({ icon: Icon, title, text }, index) => (
-            <li key={title}>
-              <div className={styles.iconWrap}>
-                <Icon aria-hidden="true" />
-                <span>{String(index + 1).padStart(2, "0")}</span>
-              </div>
-              <div>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-            </li>
-          ))}
+          {process.items.map((item, index) => {
+            const Icon = icons[item.icon];
+
+            return (
+              <li key={item.title}>
+                <div className={styles.iconWrap}>
+                  <Icon aria-hidden="true" />
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                </div>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </li>
+            );
+          })}
         </ol>
       </div>
     </section>

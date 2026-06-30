@@ -7,57 +7,65 @@ import {
   FiUsers,
   FiMapPin,
 } from "react-icons/fi";
-import styles from "@/styles/sections/apuntamos.module.scss";
+import type { IconType } from "react-icons";
+import styles from "./apuntamos.module.scss";
+import { landingData } from "@/data/site";
+import type { AudienceIconKey } from "@/types/landing.types";
 
-const audiences = [
-  { icon: FiHome, label: "Propietarios de viviendas" },
-  { icon: FiBriefcase, label: "Empresas y oficinas" },
-  { icon: FiGrid, label: "Consorcios y edificios" },
-  { icon: FiMap, label: "Barrios privados" },
-  { icon: FiKey, label: "Inmobiliarias" },
-  { icon: FiUsers, label: "Administradores" },
-];
+const icons: Record<AudienceIconKey, IconType> = {
+  home: FiHome,
+  briefcase: FiBriefcase,
+  grid: FiGrid,
+  map: FiMap,
+  key: FiKey,
+  users: FiUsers,
+};
 
 export default function Apuntamos() {
+  const { audienceCoverage } = landingData;
+  const { audience, coverage } = audienceCoverage;
+
   return (
-    <section className={styles.section} id="cobertura" aria-labelledby="cobertura-title">
+    <section
+      className={styles.section}
+      id={audienceCoverage.id}
+      aria-labelledby={audienceCoverage.headingId}
+    >
       <div className={styles.container}>
         <div className={styles.audiences}>
-          <span className="sectionLabel">A quiénes ayudamos</span>
-          <h2>Servicios para hogares, empresas y consorcios</h2>
-          <p>
-            Nos adaptamos a las necesidades y tiempos de cada propiedad, desde una reparación
-            puntual hasta un plan de mantenimiento integral.
-          </p>
+          <span className="sectionLabel">{audience.eyebrow}</span>
+          <h2>{audience.title}</h2>
+          <p>{audience.description}</p>
           <div className={styles.audienceGrid}>
-            {audiences.map(({ icon: Icon, label }) => (
-              <div className={styles.audience} key={label}>
-                <Icon aria-hidden="true" />
-                <span>{label}</span>
-              </div>
-            ))}
+            {audience.items.map((item) => {
+              const Icon = icons[item.icon];
+
+              return (
+                <div className={styles.audience} key={item.label}>
+                  <Icon aria-hidden="true" />
+                  <span>{item.label}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div className={styles.coverage}>
           <div className={styles.coverageTop}>
-            <span className={styles.status}><i aria-hidden="true" /> Cobertura activa</span>
-            <span>BA — ARG</span>
+            <span className={styles.status}><i aria-hidden="true" /> {coverage.status}</span>
+            <span>{coverage.regionCode}</span>
           </div>
           <div className={styles.map} aria-hidden="true">
             <span className={styles.ringOne} />
             <span className={styles.ringTwo} />
             <span className={styles.pin}><FiMapPin /></span>
-            <span className={styles.mapLabel}>CABA</span>
-            <span className={styles.north}>N</span>
+            <span className={styles.mapLabel}>{coverage.mapLabel}</span>
+            <span className={styles.north}>{coverage.compassLabel}</span>
           </div>
           <div className={styles.coverageText}>
-            <span className="sectionLabel sectionLabelLight">Zona de cobertura</span>
-            <h2 id="cobertura-title">Buenos Aires y alrededores</h2>
-            <p>
-              Atendemos en CABA, GBA y zonas cercanas. Consultanos por WhatsApp para
-              confirmar disponibilidad según ubicación, horario y tipo de servicio.
-            </p>
+            <span className="sectionLabel sectionLabelLight">{coverage.eyebrow}</span>
+            <h2 id={audienceCoverage.headingId}>{coverage.title}</h2>
+            <p>{coverage.description}</p>
           </div>
         </div>
       </div>

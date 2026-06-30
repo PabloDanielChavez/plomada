@@ -3,6 +3,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { landingData } from '@/data/site';
 
 const icon: L.Icon = L.icon({
     iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
@@ -11,21 +12,21 @@ const icon: L.Icon = L.icon({
     iconAnchor: [12, 41]
 });
 
-const POSITION: [number, number] = [-34.6037, -58.3816];
-
 export default function MapaZona() {
+    const { map } = landingData.audienceCoverage.coverage;
+
     return (
         <MapContainer 
-            center={POSITION} 
-            zoom={10} 
+            center={map.position}
+            zoom={map.zoom}
             style={{ height: "300px", width: "100%", borderRadius: "15px"}}
         >
             <TileLayer 
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
-            <Marker position={POSITION} icon={icon}>
-                <Popup>Zona de atención Plomada</Popup>
+            <Marker position={map.position} icon={icon}>
+                <Popup>{map.popup}</Popup>
             </Marker>
         </MapContainer>
     );
